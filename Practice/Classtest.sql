@@ -87,4 +87,6 @@ from Customers c
 right join Orders o
 on c.customer_id = o.customer_id;
 
-
+select c.name, o.order_id
+from Customers c
+cross join Orders o;

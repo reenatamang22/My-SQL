@@ -501,6 +501,28 @@ ON a.AccountID = t.AccountID
 WHERE a.Balance > 30000
 ORDER BY a.Balance DESC;
 
+SELECT *
+FROM Transactions
+WHERE Amount >
+(SELECT AVG(Amount)
+    FROM Transactions
+);
+
+SELECT AccountID,AccountType,Balance,CustomerID
+FROM Accounts
+WHERE Balance >(SELECT AVG(Balance)FROM Accounts)
+ORDER BY Balance DESC;
+
+SELECT AccountID,AccountType,Balance,CustomerID
+FROM Accounts
+WHERE AccountID IN(SELECT AccountID FROM Transactions WHERE TransactionType = 'Deposit');
+
+SELECT AccountID,AccountType,Balance,CustomerID
+FROM Accounts
+WHERE Balance =(SELECT MAX(Balance)FROM Accounts);
+
+
+
 
 
 
